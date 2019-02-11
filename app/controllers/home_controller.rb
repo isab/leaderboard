@@ -31,6 +31,8 @@ class HomeController < ApplicationController
       filename: "leaderboard.html",
       type: "text/html"
     )
+
+    redirect_to home_index_path
   end
 
   def filter_by_dates
