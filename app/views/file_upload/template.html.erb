@@ -1,0 +1,25 @@
+<% if @rankings.length > 0 %>
+  <table>
+      <thead>
+          <tr>
+            <th><%= @header %></th>
+          </tr>
+          <tr>
+              <th colspan="1">Rank</th>
+              <th colspan="1">App</th>
+              <th colspan="1">Downloads</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @rankings.each do |ranking| %>
+            <tr>
+                <td><%= ranking[0] %></td>
+                <td><%= ranking[1] %></td>
+                <td><%= ranking[2] %></td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+<% else %>
+  <h3>There is no data for the given filters.<h3>
+<% end %>

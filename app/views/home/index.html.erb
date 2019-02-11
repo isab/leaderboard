@@ -1,0 +1,24 @@
+<% if flash[:notice] %>
+  <strong><h1 style="color:red">FILE MUST BE CSV!</h1><strong>
+<% end %>
+
+<h1 style="width: 100%">Welcome to the Leaderboard</h1>
+
+<div style="width: 50%; float: left;">
+  <h2>Small Datasets, More Interactive UI, Data stored on Cookie</h2>
+  <%= render('file_upload/upload', :size => 'small') %>
+
+  <h2>Leaderboard for <%= @header %></h2>
+
+  <% if @table_data.present? %>
+    <%= render('home/leaderboard', :rankings => @rankings, :header => @header) %>
+  <% else %>
+    <h3>Please upload a data file for the leaderboard.</h3>
+  <% end %>
+</div>
+
+<div style="width: 50%; float: right;">
+  <h2>Bigger Datasets, Output File, Data does not persist</h2>
+  <h3>(File will download automatically after processing)</h3>
+  <%= render('file_upload/upload', :size => 'big') %>
+</div>

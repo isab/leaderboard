@@ -1,0 +1,48 @@
+<h3>Filter by Dates</h3>
+<p>To filter by a specific date, make the <strong>from</strong> and <strong>to</strong> dates the same.</p>
+<%= form_for :filter_dates, url: { action: "filter_by_dates", controller: "home" } do |f| %>
+  <%= f.label :from %>
+  <%= f.date_field :from %>
+  <br>
+  <%= f.label :to %>
+  <%= f.date_field :to %>
+  <br>
+  <%= f.submit "Filter" %>
+<% end %>
+
+<br>
+
+<h3>Filter by App Name</h3>
+<%= form_for :filter_app, url: { action: "filter_by_app", controller: "home" } do |f| %>
+  <%= f.text_field :app_name %>
+  <%= f.submit "Filter"%>
+<% end %>
+
+<br><br>
+
+<% if rankings.length > 0 %>
+  <%= link_to 'AVG', url_for(params.permit!.merge({:operation => 'AVG'})) %>
+  <%= link_to 'MAX', url_for(params.permit!.merge({:operation => 'MAX'})) %>
+  <%= link_to 'MIN', url_for(params.permit!.merge({:operation => 'MIN'})) %>
+  <br><br>
+  <table>
+      <thead>
+          <tr>
+              <th colspan="1">Rank</th>
+              <th colspan="1">App</th>
+              <th colspan="1">Downloads</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% rankings.each do |ranking| %>
+            <tr>
+                <td><%= ranking[0] %></td>
+                <td><%= ranking[1] %></td>
+                <td><%= ranking[2] %></td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+<% else %>
+  <h3>There is no data for the given filters.<h3>
+<% end %>

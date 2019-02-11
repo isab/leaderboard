@@ -1,0 +1,37 @@
+<h2>Please upload a CSV file:</h2>
+
+<% if size == 'big' %>
+  <%= form_for :data, url: { action: "big_upload", controller: "file_upload" } do |f| %>
+    <%= f.label :data_file %>
+    <%= f.file_field :data_file %>
+    <br><br>
+    <h5>Choose some dates</h5>
+    <%= f.label :from %>
+    <%= f.date_field :from %>
+    <br>
+    <%= f.label :to %>
+    <%= f.date_field :to %>
+    <br>
+    <%= f.label :sum %>
+    <%= f.radio_button :operation, 'SUM' %>
+    <%= f.label :max %>
+    <%= f.radio_button :operation, 'MAX' %>
+    <%= f.label :min %>
+    <%= f.radio_button :operation, 'MIN' %>
+    <%= f.label :avg %>
+    <%= f.radio_button :operation, 'AVG' %>
+    <%= f.label :history %>
+    <%= f.radio_button :history, 'show' %>
+    <br>
+    <h5>Or type an app name</h5>
+    <%= f.label :app_name %>
+    <%= f.text_field :app_name %>
+    <br><br>
+    <%= f.submit "Process CSV"%>
+  <% end %>
+<% else %>
+  <%= form_for :data, url: { action: "upload", controller: "file_upload" } do |form| %>
+    <%= form.file_field :data_file %>
+    <%= form.submit "Process CSV"%>
+  <% end %>
+<% end %>
