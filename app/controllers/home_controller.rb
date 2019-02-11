@@ -17,7 +17,9 @@ class HomeController < ApplicationController
         @header = "#{from} - #{to}"
       else
         todays_date = display_date(Date.today)
-        @rankings = app_name.present? ? filter.rankings_for_date(todays_date, app_name) : filter.rankings_for_date(todays_date)
+        @rankings = app_name.present? ?
+          filter.rankings_for_date(todays_date, app_name) :
+          filter.rankings_for_date(todays_date)
         @header = todays_date
       end
     end
